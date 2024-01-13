@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Index """
+"""
+Index to view status of API
+"""
 
 from api.v1.views import app_views
 from flask import jsonify
