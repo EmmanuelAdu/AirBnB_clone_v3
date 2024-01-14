@@ -5,7 +5,7 @@ Flask application that integrates with AirBnB static HTML Template.
 
 
 from os import environ
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
 from models import storage
 from api.v1.views import app_views
 
@@ -29,7 +29,7 @@ def not_found(error):
     Return error message `Not Found`.
     """
     response = {'error': 'Not found'}
-    return jsonify(response), 404
+    return make_response(jsonify(response), 404)
 
 
 if __name__ == "__main__":
