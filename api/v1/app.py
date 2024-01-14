@@ -5,7 +5,7 @@ Flask application that integrates with AirBnB static HTML Template.
 
 
 from os import environ
-from flask import Flask
+from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
 
@@ -20,6 +20,16 @@ def close_db(error):
     Removes the current SQLAlchemy Session object after each request.
     """
     storage.close()
+
+
+# error handler 404 for unexpected behavior
+@app.errorhandler(404)
+def not_found(error):
+    """
+    Return error message `Not Found`.
+    """
+    response = {'error': 'Not found'}
+    return jsonify(response)
 
 
 if __name__ == "__main__":
