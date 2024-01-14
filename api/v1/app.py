@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """
-Flask application that integrates with AirBnB static HTML Template
+Flask application that integrates with AirBnB static HTML Template.
 """
-from flask import Flask, jsonify, make_response, render_template, url_for
+
+
+from os import environ
+from flask import Flask
 from models import storage
 from api.v1.views import app_views
-from os import environ
 
 
 app = Flask(__name__)
@@ -14,7 +16,9 @@ app.register_blueprint(app_views)
 
 @app.teardown_appcontext
 def close_db(error):
-    """ Close Storage """
+    """
+    Removes the current SQLAlchemy Session object after each request.
+    """
     storage.close()
 
 
