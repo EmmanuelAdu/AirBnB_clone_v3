@@ -17,7 +17,7 @@ def get_all_states():
     Retrieves all list of State objects from storage
     """
     # Get all states objects from  the storage
-    states = storage.all(State).values()
+    states = storage.all("State").values()
     # Convert object to dict and jsonify the list
     state_list = [state.to_dict() for state in states]
     return jsonify(state_list)
@@ -29,7 +29,7 @@ def get_state(state_id):
     """
     Retrieves a State object by state id
     """
-    state = storage.get(State, state_id)
+    state = storage.get("State", state_id)
     if state:
         # Return the State object in JSON Format
         return jsonify(state.to_dict())
@@ -44,7 +44,7 @@ def delete_state(state_id):
     """
     Deleting a specific State by state id from storage
     """
-    state = storage.get(State, state_id)
+    state = storage.get("State", state_id)
     if state:
         # Delete the specified state object and save changes
         storage.delete(state)
@@ -86,7 +86,7 @@ def update_state(state_id):
     Updates a State object
     """
     # Get the state object from the storage by state id
-    state = storage.get(State, state_id)
+    state = storage.get("State", state_id)
     if state:
         if not request.get_json():
             # Request 400 error if the data request is not json format
